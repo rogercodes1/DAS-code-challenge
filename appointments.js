@@ -10,8 +10,7 @@ async function fetchAvailableDays() {
     dayObjData[day.id] = day.times
     daysArr.push(`${day.id}`)
     })
-    run()
-    return daysArr
+    // return daysArr
   debugger
 }
 // function fetchAvailableTimesByDay(daysArr) {
