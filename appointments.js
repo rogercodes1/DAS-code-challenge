@@ -16,17 +16,16 @@ let fetchAvailableDays = async ()=>{
     daysArr.push(`${day.id}`)
     })
   console.log(dayObjData);
-  return dayObjData
+  return daysArr
 }
 
 console.log(fetchAvailableDays());
 
- let fetchAvailTimesByDay = (daysArray)=> {
+ const fetchAvailTimesByDay = (daysArray)=> {
   let promise = new Promise((resolve,reject)=>{
     daysArray.forEach(day=>{
       fetch(`${appointmentType}/${day}`)
       .then(res=>{
-        debugger
         if (res.ok){
           res.json()
           .then(json=>{
@@ -34,7 +33,7 @@ console.log(fetchAvailableDays());
           })
         }
         else {
-          reject(alert("No times available. "))
+          reject(alert(`No times available`))
         }
       })
   })
@@ -43,6 +42,29 @@ console.log(fetchAvailableDays());
   return promise
 }
 console.log(fetchAvailTimesByDay(daysArray));
+
+
+// I was playing around with an article I saw and created code below.
+const brokenPromises = async ()=>{
+  let allAvailTimes = []
+  fetchAvailableDays()
+  .then(res=>{
+    fetchAvailTimesByDay(res)
+    .then(response=>{
+      allAvailTimes += response.times
+    })
+  })
+  console.log(allAvailTimes);
+  return allAvailTimes
+}
+
+brokenPromises()
+
+
+
+
+
+// Code attempts
 
 //  async function fetchAvailableTimesByDay(daysArray) {
 //    let availTimes = [];
