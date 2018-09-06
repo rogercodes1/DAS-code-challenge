@@ -1,5 +1,5 @@
 const appointmentType = `http://localhost:3000/testdrive`
-
+let daysArray = ["Monday", "Tuesday"]
 async function fetchAvailableDays() {
   let daysArr=[];
   let dayObjData = {}
@@ -10,18 +10,45 @@ async function fetchAvailableDays() {
     dayObjData[day.id] = day.times
     daysArr.push(`${day.id}`)
     })
-    // return daysArr
-  debugger
+  return dayObjData
 }
-// function fetchAvailableTimesByDay(daysArr) {
-//   debugger;
-//   daysArr.forEach(day=>{
-//     debugger;
-//     fetch(`${appointmentType}/${day}`)
-//   })
-// }
- fetchAvailableDays()
-// fetchAvailableTimesByDay()
+
+
+ // fetchAvailableDays()
+//  async function fetchAvailableTimesByDay(daysArray) {
+//    let availTimes = [];
+//   daysArray.forEach(day=>{
+//
+//        let res = await fetch(`${appointmentType}/${day}`)
+//      let data = await res.json()
+//        availTimes +=data.times
+//
+//    })
+//    debugger
+//  }
+// fetchAvailableTimesByDay(daysArray)
+
+ function fetchAvailTimesByDay(daysArray) {
+  let promise = new Promise((resolve,reject)=>{
+    daysArray.forEach(day=>{
+      fetch(`${appointmentType}/${day}`)
+      .then(res=>{
+        if (res.ok){
+          res.json()
+          .then(json=>{
+            resolve(json)
+          })
+        }
+        else {
+          reject(alert("No times available. "))
+        }
+      })
+  })
+  })
+  console.log(promise);
+  return promise
+}
+fetchAvailTimesByDay(daysArray)
 // async function run(){
 //   let availableTimes;
 //   let arr = await fetchAvailableDays()
