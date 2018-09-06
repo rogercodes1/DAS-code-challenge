@@ -14,10 +14,9 @@ async function fetchAvailableDays() {
     dayObjData[day.id] = day.times
     daysArr.push(`${day.id}`)
     })
+  console.log(dayObjData);
   return dayObjData
 }
-
-
 
 
  function fetchAvailTimesByDay(daysArray) {
@@ -40,9 +39,9 @@ async function fetchAvailableDays() {
   console.log(promise);
   return promise
 }
-fetchAvailTimesByDay(daysArray)
+console.log(fetchAvailTimesByDay(daysArray));
 
-// fetchAvailableDays()
+console.log(fetchAvailableDays());
 //  async function fetchAvailableTimesByDay(daysArray) {
 //    let availTimes = [];
 //   daysArray.forEach(day=>{
