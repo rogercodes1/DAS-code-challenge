@@ -6,13 +6,19 @@
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"] //for testing
 
-let fetchAvailableDays = ()=>{
+let fetchDays = ()=>{
   return new Promise((resolve, reject) =>{
     fetch(appointmentType)
-    
+    .then(res=>{
+      if (res.ok){
+        res.json().then(json=>resolve(json))
+      }
+      else {
+        reject(alert(`No times available`))
+      }
+    })
   })
-  let daysArr=[];
-  let dayObjData = {}
+
   let response = await fetch(appointmentType)
   let data = await response.json()
   await data.forEach(day=>{
@@ -24,7 +30,7 @@ let fetchAvailableDays = ()=>{
   return daysArr
 }
 
-console.log(fetchAvailableDays());
+console.log(fetchDays());
 
  const fetchAvailTimesByDay = (daysArray)=> {
   let promise = new Promise((resolve,reject)=>{
@@ -50,21 +56,18 @@ console.log(fetchAvailTimesByDay(daysArray));
 
 
 // After looking up a couple articles I came up with the code below.
-const brokenPromises = async ()=>{
-  let allAvailTimes = []
-  await fetchAvailableDays()
-  .then(res=>{
-     fetchAvailTimesByDay(res)
-    .then(response=>{
-      allAvailTimes += response.times
-    })
-  })
-  console.log(await fetchAvailableDays());
-  console.log(await allAvailTimes);
+const finalPromises = async ()=>{
+  const first =  fetchDays()
+  debugger
+  const last = fetchAvailTimesByDay(first)
+
+  console.log(await first);
+  console.log(await last);
+  debugger
   return allAvailTimes
 }
 
-brokenPromises()
+finalPromises()
 
 
 
