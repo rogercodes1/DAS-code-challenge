@@ -14,19 +14,7 @@ async function fetchAvailableDays() {
 }
 
 
- // fetchAvailableDays()
-//  async function fetchAvailableTimesByDay(daysArray) {
-//    let availTimes = [];
-//   daysArray.forEach(day=>{
-//
-//        let res = await fetch(`${appointmentType}/${day}`)
-//      let data = await res.json()
-//        availTimes +=data.times
-//
-//    })
-//    debugger
-//  }
-// fetchAvailableTimesByDay(daysArray)
+
 
  function fetchAvailTimesByDay(daysArray) {
   let promise = new Promise((resolve,reject)=>{
@@ -49,6 +37,21 @@ async function fetchAvailableDays() {
   return promise
 }
 fetchAvailTimesByDay(daysArray)
+
+// fetchAvailableDays()
+//  async function fetchAvailableTimesByDay(daysArray) {
+//    let availTimes = [];
+//   daysArray.forEach(day=>{
+//
+//        let res = await fetch(`${appointmentType}/${day}`)
+//      let data = await res.json()
+//        availTimes +=data.times
+//
+//    })
+//    debugger
+//  }
+// fetchAvailableTimesByDay(daysArray)
+
 // async function run(){
 //   let availableTimes;
 //   let arr = await fetchAvailableDays()
