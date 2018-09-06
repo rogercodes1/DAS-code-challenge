@@ -4,6 +4,7 @@
 
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"]
+
 async function fetchAvailableDays() {
   let daysArr=[];
   let dayObjData = {}
@@ -24,6 +25,7 @@ async function fetchAvailableDays() {
     daysArray.forEach(day=>{
       fetch(`${appointmentType}/${day}`)
       .then(res=>{
+        debugger
         if (res.ok){
           res.json()
           .then(json=>{
