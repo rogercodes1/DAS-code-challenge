@@ -1,14 +1,18 @@
 const appointmentType = `http://localhost:3000/testdrive`
 const exactDay = `${appointmentType}/monday`
-let days;
 
 function fetchAvailableDays() {
+  let daysArr=[];
   fetch(appointmentType)
   .then(response=>response.json())
   .then(json=>{
-    debugger
-    return (days = json)
+    json.forEach(day=>{
+      // debugger
+      daysArr.push(`${day.id}`)
+    })
+    return daysArr
   })
+
 }
 function fetchAvailableTimesByDay(days) {
   days.forEach(day=>{
@@ -17,3 +21,4 @@ function fetchAvailableTimesByDay(days) {
   })
 }
  fetchAvailableDays()
+// fetchAvailableTimesByDay()

@@ -3,7 +3,7 @@
       {"id": "Monday",
         "times":["10:30AM Monday", "12:30PM Monday"] },
       {"id": "Tuesday",
-        "times":["10:30AM Tuesday", "12:30PM Tuesday"] },
+        "times":["10:30AM Tuesday", "12:30PM Tuesday"] }
 
   ]
 }
