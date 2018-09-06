@@ -6,7 +6,11 @@
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"] //for testing
 
-let fetchAvailableDays = async ()=>{
+let fetchAvailableDays = ()=>{
+  return new Promise((resolve, reject) =>{
+    fetch(appointmentType)
+    
+  })
   let daysArr=[];
   let dayObjData = {}
   let response = await fetch(appointmentType)
@@ -46,7 +50,7 @@ console.log(fetchAvailTimesByDay(daysArray));
 
 
 // After looking up a couple articles I came up with the code below.
-const finalPromises = async ()=>{
+const brokenPromises = async ()=>{
   let allAvailTimes = []
   await fetchAvailableDays()
   .then(res=>{
@@ -60,7 +64,7 @@ const finalPromises = async ()=>{
   return allAvailTimes
 }
 
-finalPromises()
+brokenPromises()
 
 
 
