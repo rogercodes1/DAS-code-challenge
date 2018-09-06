@@ -1,15 +1,19 @@
-const appointmentType = `localhost:3000/test%20drive`
-const exactDay = `localhost:8001/test%20drive/monday`
+const appointmentType = `http://localhost:3000/testdrive`
+const exactDay = `${appointmentType}/monday`
 let days;
 
 function fetchAvailableDays() {
-  fetch(daysAvailable)
-  .then(res=>res.json())
+  fetch(appointmentType)
+  .then(response=>response.json())
   .then(json=>{
     debugger
     return (days = json)
   })
 }
 function fetchAvailableTimesByDay(days) {
-
+  days.forEach(day=>{
+    debugger;
+    fetch(`${appointmentType}/${day.toLowerCase()}`)
+  })
 }
+ fetchAvailableDays()
