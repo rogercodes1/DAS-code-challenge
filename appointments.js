@@ -34,7 +34,7 @@ console.log(fetchAvailableDays());
           })
         }
         else {
-          reject(alert(`No times available`))
+          reject(console.log("what is res.json()", res.json());)
         }
       })
   })

@@ -4,7 +4,7 @@
 // json-server --watch daysAPI.json
 
 const appointmentType = `http://localhost:3000/testdrive`
-let daysArray = ["Monday", "Tuesday"] //for testing
+// let daysArray = ["Monday", "Tuesday"] //for testing
 
 let fetchDays = ()=>{
   return new Promise((resolve, reject) =>{
@@ -18,51 +18,43 @@ let fetchDays = ()=>{
       }
     })
   })
-
-  let response = await fetch(appointmentType)
-  let data = await response.json()
-  await data.forEach(day=>{
-
-    dayObjData[day.id] = day.times
-    daysArr.push(`${day.id}`)
-    })
-  console.log(dayObjData);
-  return daysArr
 }
 
-console.log(fetchDays());
 
- const fetchAvailTimesByDay = (daysArray)=> {
-  let promise = new Promise((resolve,reject)=>{
+
+ const fetchAvailTimesByDay = async (daysArray)=> {
+  return new Promise((resolve,reject)=>{
     daysArray.forEach(day=>{
+      debugger;
       fetch(`${appointmentType}/${day}`)
       .then(res=>{
+        console.log('res json()',res.json());
         if (res.ok){
+          debugger
           res.json()
           .then(json=>{
             resolve(json)
           })
         }
         else {
-          reject(alert(`No times available`))
+          reject(console.log("what is res.json()", res.json());)
         }
       })
   })
   })
-  console.log(promise);
-  return promise
+
 }
-console.log(fetchAvailTimesByDay(daysArray));
+// console.log(fetchAvailTimesByDay(daysArray));
 
 
 // After looking up a couple articles I came up with the code below.
 const finalPromises = async ()=>{
-  const first =  fetchDays()
+  const first =  await fetchDays()
+  const last = await fetchAvailTimesByDay(first)
   debugger
-  const last = fetchAvailTimesByDay(first)
 
-  console.log(await first);
-  console.log(await last);
+  console.log(first);
+  console.log(last);
   debugger
   return allAvailTimes
 }
