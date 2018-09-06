@@ -5,13 +5,13 @@
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"]
 
-async function fetchAvailableDays() {
+let fetchAvailableDays = async ()=>{
   let daysArr=[];
   let dayObjData = {}
   let response = await fetch(appointmentType)
   let data = await response.json()
   await data.forEach(day=>{
-    // debugger
+
     dayObjData[day.id] = day.times
     daysArr.push(`${day.id}`)
     })
@@ -19,8 +19,9 @@ async function fetchAvailableDays() {
   return dayObjData
 }
 
+console.log(fetchAvailableDays());
 
- function fetchAvailTimesByDay(daysArray) {
+ let fetchAvailTimesByDay = (daysArray)=> {
   let promise = new Promise((resolve,reject)=>{
     daysArray.forEach(day=>{
       fetch(`${appointmentType}/${day}`)
@@ -43,7 +44,6 @@ async function fetchAvailableDays() {
 }
 console.log(fetchAvailTimesByDay(daysArray));
 
-console.log(fetchAvailableDays());
 //  async function fetchAvailableTimesByDay(daysArray) {
 //    let availTimes = [];
 //   daysArray.forEach(day=>{
