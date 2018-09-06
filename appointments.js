@@ -1,3 +1,7 @@
+// install json-server
+// npm install -g json-server
+// json-server --watch daysAPI.json
+
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"]
 async function fetchAvailableDays() {
