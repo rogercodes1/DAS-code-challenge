@@ -17,12 +17,11 @@ let fetchDays = ()=>{
 }
 
  const fetchAvailTimesByDay = (day)=> {
-   console.log(day[0].id); //Only accounts for monday
+   console.log(day[0].id); //Only accounts for 1 day, i.e. monday
   return new Promise((resolve,reject)=>{
       fetch(`${appointmentType}/${day[0].id}`)
       .then(res=>{
         if (res.ok){
-          // debugger
           res.json()
           .then(json=>{
             resolve(json.times)
@@ -50,7 +49,7 @@ const fetchAllTimesByDay = async(days)=> {
   console.log(days);
   let daysArr = []
  return days.forEach(day=>{
-   fetch(`${appointmentType}/${day}`)
+   fetch(`${appointmentType}/${day.id}`)
    .then(res=>{
      if (res.ok){
        // debugger
