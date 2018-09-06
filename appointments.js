@@ -3,7 +3,7 @@
 // json-server --watch daysAPI.json
 
 const appointmentType = `http://localhost:3000/testdrive`
-let daysArray = ["Monday", "Tuesday"]
+let daysArray = ["Monday", "Tuesday"] //for testing 
 
 let fetchAvailableDays = async ()=>{
   let daysArr=[];
@@ -44,7 +44,7 @@ console.log(fetchAvailableDays());
 console.log(fetchAvailTimesByDay(daysArray));
 
 
-// I was playing around with an article I saw and created code below.
+// After looking up a couple articles I came up with the code below.
 const brokenPromises = async ()=>{
   let allAvailTimes = []
   await fetchAvailableDays()
