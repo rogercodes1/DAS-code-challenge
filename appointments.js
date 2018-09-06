@@ -47,14 +47,15 @@ console.log(fetchAvailTimesByDay(daysArray));
 // I was playing around with an article I saw and created code below.
 const brokenPromises = async ()=>{
   let allAvailTimes = []
-  fetchAvailableDays()
+  await fetchAvailableDays()
   .then(res=>{
-    fetchAvailTimesByDay(res)
+     fetchAvailTimesByDay(res)
     .then(response=>{
       allAvailTimes += response.times
     })
   })
-  console.log(allAvailTimes);
+  console.log(await fetchAvailableDays());
+  console.log(await allAvailTimes);
   return allAvailTimes
 }
 
