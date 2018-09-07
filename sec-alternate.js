@@ -6,12 +6,11 @@
 const appointmentType = `http://localhost:3000/testdrive`
 
 let fetchDays = ()=>{
-  return new Promise((resolve) =>{
     fetch(appointmentType)
     .then(res=>res.json())
-    .then(json=>resolve(json))
-    .catch(err => {console.log('what is err',err)})
-  })
+    .then(json=>{
+      return json
+    })
 }
 
  const fetchAvailTimesByDay = (day)=> {
@@ -35,10 +34,10 @@ const finalPromises = async ()=>{
   .then(values=>{
     debugger
   })
-  console.log(first);
-  console.log(oneDay);
-  console.log(multiDays);
-  return oneDay
+  // console.log(first);
+  // console.log(oneDay);
+  // console.log(multiDays);
+  // return oneDay
 }
 
 const fetchAllTimesByDay = async(days)=> {
