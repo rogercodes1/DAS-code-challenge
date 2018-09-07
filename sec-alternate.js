@@ -6,11 +6,15 @@
 const appointmentType = `http://localhost:3000/testdrive`
 
 let fetchDays = ()=>{
-    fetch(appointmentType)
-    .then(res=>res.json())
-    .then(json=>{
-      return json
+  let daysArray = []
+  fetch(appointmentType)
+  .then(res=>res.json())
+  .then(json=>{
+    json.map(day=>{
+      daysArray.push(day.id)
     })
+  })
+  return daysArray
 }
 
  const fetchAvailTimesByDay = (day)=> {
@@ -29,15 +33,12 @@ let fetchDays = ()=>{
   }
 
 
-const finalPromises = async ()=>{
-  Promise.all([fetchDays(), fetchAllTimesByDay()])
+const finalPromises = ()=>{
+  Promise.all([fetchDays(), fetchAllTimesByDay(fetchDays())])
   .then(values=>{
     debugger
   })
-  // console.log(first);
-  // console.log(oneDay);
-  // console.log(multiDays);
-  // return oneDay
+  
 }
 
 const fetchAllTimesByDay = async(days)=> {
