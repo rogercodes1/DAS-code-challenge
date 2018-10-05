@@ -38,11 +38,10 @@ const finalPromises = ()=>{
   .then(values=>{
     debugger
   })
-  
+
 }
 
-const fetchAllTimesByDay = async(days)=> {
-  console.log(days);
+const fetchAllTimesByDay = (days)=> {
   let daysArr = []
  return days.forEach(day=>{
    fetch(`${appointmentType}/${day.id}`)
