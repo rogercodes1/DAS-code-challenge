@@ -6,7 +6,7 @@
 const appointmentType = `http://localhost:3000/testdrive`
 let daysArray = ["Monday", "Tuesday"] //for testing
 
-let fetchAvailableDays = async ()=>{
+let getTimes = async ()=>{
   let daysArr=[];
   let dayObjData = {}
   let response = await fetch(appointmentType)
@@ -20,7 +20,7 @@ let fetchAvailableDays = async ()=>{
   return daysArr
 }
 
-console.log(fetchAvailableDays());
+console.log(getTimes());
 
  const fetchAvailTimesByDay = (daysArray)=> {
   let promise = new Promise((resolve,reject)=>{
@@ -34,7 +34,7 @@ console.log(fetchAvailableDays());
           })
         }
         else {
-          reject(console.log("what is res.json()", res.json());)
+          reject(console.log("what is res.json()", res.json()))
         }
       })
   })
@@ -48,14 +48,14 @@ console.log(fetchAvailTimesByDay(daysArray));
 // After looking up a couple articles I came up with the code below.
 const finalPromises = async ()=>{
   let allAvailTimes = []
-  await fetchAvailableDays()
+  await getTimes()
   .then(res=>{
      fetchAvailTimesByDay(res)
     .then(response=>{
       allAvailTimes += response.times
     })
   })
-  console.log(await fetchAvailableDays());
+  console.log(await getTimes());
   console.log(await allAvailTimes);
   return allAvailTimes
 }
@@ -83,7 +83,7 @@ finalPromises()
 
 // async function run(){
 //   let availableTimes;
-//   let arr = await fetchAvailableDays()
+//   let arr = await getTimes()
 //   await arr.forEach(day=>{
 //     let resp = await fetch(`${appointmentType}/${day}`)
 //     // debugger;
